@@ -1,0 +1,7 @@
+/path-flow
+/visualizer
+/path-flow.html
+/bin/
+/coverage.out
+*.test
+.DS_Store
