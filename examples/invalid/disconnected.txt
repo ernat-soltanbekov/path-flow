@@ -1,0 +1,7 @@
+3
+##start
+entry 0 0
+a 1 0
+##end
+exit 3 0
+entry-a
