@@ -1,0 +1,33 @@
+24
+# Discipline in motion. Morning practice since 2008.
+# Independent Tomorrow School project by Yernat Soltanbekov.
+##start
+Dawn 0 0
+Stance 3 -5
+Focus 6 -5
+Resolve 9 -5
+Practice 3 0
+Discipline 6 0
+Progress 9 0
+Service 3 5
+Tomorrow 6 5
+Astana 9 5
+##end
+Horizon 12 0
+Dawn-Stance
+Stance-Focus
+Focus-Resolve
+Resolve-Horizon
+Dawn-Practice
+Practice-Discipline
+Discipline-Progress
+Progress-Horizon
+Dawn-Service
+Service-Tomorrow
+Tomorrow-Astana
+Astana-Horizon
+Stance-Practice
+Focus-Discipline
+Discipline-Tomorrow
+Resolve-Progress
+Progress-Astana
