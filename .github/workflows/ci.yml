@@ -1,0 +1,40 @@
+name: audit
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        go: ['1.22.x', 'stable']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Formatting
+        run: test -z "$(gofmt -l .)"
+      - name: Static analysis
+        run: go vet ./...
+      - name: Tests and race detector
+        run: go test -race -count=1 ./...
+      - name: Build both commands
+        run: |
+          go build -o bin/path-flow .
+          go build -o bin/visualizer ./cmd/visualizer
+      - name: End-to-end replay
+        run: |
+          set -o pipefail
+          ./bin/path-flow examples/ghost-of-astana.txt | ./bin/visualizer -out /tmp/path-flow.html
+      - name: Parser fuzz smoke test
+        if: matrix.go == 'stable'
+        run: go test ./internal/farm -run '^$' -fuzz FuzzParse -fuzztime 10s -parallel 2
+      - name: Replay fuzz smoke test
+        if: matrix.go == 'stable'
+        run: go test ./internal/replay -run '^$' -fuzz FuzzReplay -fuzztime 10s -parallel 2
