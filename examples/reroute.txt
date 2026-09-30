@@ -1,0 +1,21 @@
+12
+# The first shortest path must be reconsidered to unlock two pipelines.
+##start
+s 0 0
+a 2 -2
+b 6 2
+c 4 -2
+d 6 -2
+e 2 2
+f 4 2
+##end
+t 8 0
+s-a
+a-b
+b-t
+a-c
+c-d
+d-t
+s-e
+e-f
+f-b
